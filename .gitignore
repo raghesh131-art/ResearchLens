@@ -1,0 +1,13 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+models/*.gguf
+
+data/*.index
+data/*.pkl
+
+documents/*.pdf
+
+.streamlit/
