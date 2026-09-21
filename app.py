@@ -2,6 +2,8 @@ import re
 import faiss
 import pymupdf
 import streamlit as st
+import os
+from huggingface_hub import hf_hub_download
 
 from sentence_transformers import SentenceTransformer
 from llama_cpp import Llama
@@ -35,13 +37,24 @@ def load_embedding_model():
 
 @st.cache_resource
 def load_llm():
+    model_dir = "models"
+    model_filename = "qwen2.5-0.5b-instruct-q4_k_m.gguf"
+    model_path = os.path.join(model_dir, model_filename)
+
+    if not os.path.exists(model_path):
+        os.makedirs(model_dir, exist_ok=True)
+
+        model_path = hf_hub_download(
+            repo_id="Hugggme/Qwen2.5-0.5B-Instruct-Q4_K_M-GGUF",
+            filename=model_filename,
+            local_dir=model_dir
+        )
 
     return Llama(
-        model_path="models/qwen2.5-0.5b-instruct-q4_k_m.gguf",
+        model_path=model_path,
         n_ctx=2048,
         verbose=False
     )
-
 
 embedding_model = load_embedding_model()
 llm = load_llm()

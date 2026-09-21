@@ -6,3 +6,4 @@ sentence-transformers
 faiss-cpu==1.13.2
 llama-cpp-python
 numpy
+huggingface_hub
