@@ -45,7 +45,7 @@ def load_llm():
         os.makedirs(model_dir, exist_ok=True)
 
         model_path = hf_hub_download(
-            repo_id="Hugggme/Qwen2.5-0.5B-Instruct-Q4_K_M-GGUF",
+            repo_id="Qwen/Qwen2.5-0.5B-Instruct-GGUF",
             filename=model_filename,
             local_dir=model_dir
         )
